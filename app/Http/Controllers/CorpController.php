@@ -7,32 +7,17 @@ use App\Models\Corp;
 
 class CorpController extends Controller
 {
-    public function index()
-    {
-        return response()->json(Corp::all());
-    }
+    public function index() {
+        return view('form-corp');
+        }
 
-    public function store(Request $request)
-    {
-        $corp = Corp::create($request->all());
-        return response()->json($corp, 201);
-    }
-
-    public function show(Corp $corp)
-    {
-        return response()->json($corp);
-    }
-
-    public function update(Request $request, Corp $corp)
-    {
-        $corp->update($request->all());
-        return response()->json($corp);
-    }
-
-    public function destroy(Corp $corp)
-    {
-        $corp->delete();
-        return response()->json(['message' => 'Deleted successfully']);
-    }
+        public function store(Request $request){
+        $corp = new Corp();
+        $corp->Cod_ce=$request->Cod_ce;
+        $corp->Denom_ce=$request->Denom_ce;
+    
+        $corp->save();
+        return $corp;
+}
 }
 

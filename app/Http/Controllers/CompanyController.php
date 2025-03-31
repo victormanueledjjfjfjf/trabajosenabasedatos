@@ -7,32 +7,17 @@ use App\Models\Company;
 
 class CompanyController extends Controller
 {
-    public function index()
-    {
-        return response()->json(Company::all());
-    }
+    public function index() {
+        return view('form-company');
+        }
 
-    public function store(Request $request)
-    {
-        $company = Company::create($request->all());
-        return response()->json($company, 201);
-    }
-
-    public function show(Company $company)
-    {
-        return response()->json($company);
-    }
-
-    public function update(Request $request, Company $company)
-    {
-        $company->update($request->all());
-        return response()->json($company);
-    }
-
-    public function destroy(Company $company)
-    {
-        $company->delete();
-        return response()->json(['message' => 'Deleted successfully']);
-    }
+        public function store(Request $request){
+        $company = new Company();
+        $company->Num_com=$request->Num_com;
+        $company->ActiP_com=$request->ActiP_com;
+    
+        $company->save();
+        return $company;
+}   
 }
 

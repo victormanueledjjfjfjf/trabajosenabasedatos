@@ -1,29 +1,18 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\CorpController;
 use App\Http\Controllers\BarrackController;
-use App\Http\Controllers\SoldierController;
 use App\Http\Controllers\CompanyController;
 
-// Página de inicio
-Route::get('/', function () {
-    return view('welcome');
-});
+// Formulario para Corps
+Route::get('/form-corp', [CorpController::class, 'index']);
+Route::post('/create-corp', [CorpController::class, 'store'])->name('corp.store');
 
-// Rutas para Services
-Route::resource('services', ServiceController::class);
+// Formulario para Barracks
+Route::get('/form-barrack', [BarrackController::class, 'index']);
+Route::post('/create-barrack', [BarrackController::class, 'store'])->name('barrack.store');
 
-// Rutas para Corps (Cuerpos del ejército)
-Route::resource('corps', CorpController::class);
-
-// Rutas para Barracks (Cuarteles)
-Route::resource('barracks', BarrackController::class);
-
-// Rutas para Soldiers (Soldados)
-Route::resource('soldiers', SoldierController::class);
-
-// Rutas para Companies (Compañías)
-Route::resource('companies', CompanyController::class);
-
+// Formulario para Companies
+Route::get('/form-company', [CompanyController::class, 'index']);
+Route::post('/create-company', [CompanyController::class, 'store'])->name('company.store');
